@@ -6,7 +6,7 @@ class Presenter extends CI_Controller {
 	public function index()
 	{
 		$data['title'] = "Presenter :: Dashboard";
-		$data['page_title'] = "Dashboard";
+		$data['page_title'] = "Dashboard Presenter";
 		$this->load->view('presenter/partials/head', $data);
 		$this->load->view('presenter/dashboard');
 		$this->load->view('presenter/partials/footer');

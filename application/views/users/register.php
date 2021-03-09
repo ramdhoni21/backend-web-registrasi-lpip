@@ -9,15 +9,15 @@
     <div class="login-area login-s2">
         <div class="container">
             <div class="login-box">
-                <form>
+                <?= form_open('users/register') ?>
                     <div class="login-form-head">
                         <h4 class="text-primary">Register</h4>
                         <p>Hello there, Register and Join with Us</p>
                     </div>
                     <div class="login-form-body">
                         <div class="form-gp">
-                            <label for="exampleInputName1">Full Name</label>
-                            <input type="text" id="exampleInputName1">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name">
                             <i class="ti-user"></i>
                             <div class="text-danger"></div>
                         </div>
@@ -53,10 +53,10 @@
                             <button id="form_submit" type="submit">Register<i class="ti-arrow-right"></i></button>
                         </div>
                         <div class="form-footer text-center mt-2">
-                            <p class="text-muted">Have an account? <a href="<?= base_url('Users/index') ?>">Login</a></p>
+                            <p class="text-muted">Have an account? <a href="<?= base_url('Users/login') ?>">Login</a></p>
                         </div>
                     </div>
-                </form>
+                <?= form_close() ?>
             </div>
             <div>
                 <center><p>Copyright © 2021 - <a href="http://lpip.ump.ac.id" target="_blank">LPIP UMP</a></p></center>

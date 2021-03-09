@@ -38,8 +38,8 @@ class Users extends CI_Controller {
         $this->is_login();
 
         if (isset($_POST)) {
-            $this->form_validation->set_rules('email', 'Email', 'trim|valid_email|required|callback_check_email_exists_login', array('required' => 'Masukan Email'));
-            $this->form_validation->set_rules('pass', 'Password', 'trim|required', array('required' => 'Masukan Password'));
+            $this->form_validation->set_rules('email', 'Email', 'trim|valid_email|required|callback_check_email_exists_login', array('required' => 'Enter email!'));
+            $this->form_validation->set_rules('pass', 'Password', 'trim|required', array('required' => 'Enter password!'));
             if ($this->form_validation->run() == FALSE) {
             } else {
                 $data = [
@@ -48,16 +48,21 @@ class Users extends CI_Controller {
                 ];
                 $users = $this->musers->check_login($data);
                 if ($users) {
-                    $session = [
-                        'is_login' => true,
-                        'id_user' =>  $users['id'],
-                        'name' => $users['nama'],
-                        'level' => $users['level']
-                    ];
-                    $this->session->set_userdata($session);
-                    redirect('users/login');
+                    if ($users['validasi'] == 1) {
+                        $session = [
+                            'is_login' => true,
+                            'id_user' =>  $users['id'],
+                            'name' => $users['name'],
+                            'level' => $users['level']
+                        ];
+                        $this->session->set_userdata($session);
+                        redirect('users/login');
+                    } else {
+                        $this->session->set_flashdata('login', 'Your account has not been validated!');
+                    }
+                    
                 } else {
-                    $this->session->set_flashdata('pass', 'Password salah');
+                    $this->session->set_flashdata('pass', 'Password incorrect!');
                 }
             }
         }
@@ -74,7 +79,7 @@ class Users extends CI_Controller {
         if ($query) {
             return true;
         } else {
-            $this->form_validation->set_message('check_email_exists_login', 'Email tidak terdaftar');
+            $this->form_validation->set_message('check_email_exists_login', 'Email not registered!');
             return false;
         }
     }

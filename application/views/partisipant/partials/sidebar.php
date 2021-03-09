@@ -2,7 +2,7 @@
         <div class="sidebar-menu">  
             <div class="sidebar-header">
                 <div class="logo">
-                    <a href="<?=base_url('/')?>"><img src="<?=base_url('assets/images/icon/logo.png')?>" alt="logo"></a>
+                    <a href="<?=base_url('/')?>"><img src="<?=base_url('assets/images/icon/logo-sidebar.png')?>" alt="logo"></a>
                 </div>
             </div>
             <div class="main-menu">

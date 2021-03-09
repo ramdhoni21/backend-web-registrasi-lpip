@@ -13,10 +13,10 @@
                     <div class="col-sm-6 clearfix">
                         <div class="user-profile pull-right">
                             <i class="fa fa-user fa-2x mr-2" alt="avatar"></i>
-                            <h4 class="user-name dropdown-toggle" data-toggle="dropdown">Admin LPIP<i class="fa fa-angle-down"></i></h4>
+                            <h4 class="user-name dropdown-toggle" data-toggle="dropdown"><?=$this->session->userdata('name')?><i class="fa fa-angle-down"></i></h4>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Settings</a>
-                                <a class="dropdown-item" href="#">Log Out</a>
+                                <!-- <a class="dropdown-item" href="#">Settings</a> -->
+                                <a class="dropdown-item" href="<?= base_url('users/logout') ?>">Log Out</a>
                             </div>
                         </div>
                     </div>
