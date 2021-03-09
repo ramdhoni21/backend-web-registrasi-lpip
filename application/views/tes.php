@@ -1,0 +1,1 @@
+<?=  "Mobil itu berwarna " . $this->uri->segment('2'); ?>
