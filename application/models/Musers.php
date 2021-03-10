@@ -18,6 +18,20 @@ class Musers extends CI_Model
         }
     }
 
+    // Register users
+    public function register($data)
+    {
+        $this->db->insert('tb_users', $data);
+        if ($this->db->affected_rows() > 0) {
+            // register success
+            return true;
+        } else {
+            // register failed
+            return false;
+        }
+        
+    }
+
     // Check email exists
     public function check_email_exists($email)
     {

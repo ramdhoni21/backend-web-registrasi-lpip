@@ -32,7 +32,7 @@
                                     <div class="seo-fact sbg1">
                                         <div class="p-4 d-flex justify-content-between align-items-center">
                                             <div class="seofct-icon"><i class="ti-user"></i> Presenter</div>
-                                            <h2>50</h2>
+                                            <h2><?=$presenter?></h2>
                                         </div>
                                         <canvas id="seolinechart1" height="50"></canvas>
                                     </div>
@@ -43,7 +43,7 @@
                                     <div class="seo-fact sbg2">
                                         <div class="p-4 d-flex justify-content-between align-items-center">
                                             <div class="seofct-icon"><i class="ti-user"></i> Partisipant</div>
-                                            <h2>3,984</h2>
+                                            <h2><?=$partisipant?></h2>
                                         </div>
                                         <canvas id="seolinechart2" height="50"></canvas>
                                     </div>

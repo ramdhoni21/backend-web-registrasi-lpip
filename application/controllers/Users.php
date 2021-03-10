@@ -58,7 +58,7 @@ class Users extends CI_Controller {
                         $this->session->set_userdata($session);
                         redirect('users/login');
                     } else {
-                        $this->session->set_flashdata('login', 'Your account has not been validated!');
+                        $this->session->set_flashdata('login_failed', 'Your account has not been validated!');
                     }
                     
                 } else {
@@ -72,7 +72,7 @@ class Users extends CI_Controller {
 		$this->load->view('users/partials/footer');
     }
 
-	// Check email user exists
+	// Check email user exists login
     public function check_email_exists_login($email)
     {
         $query = $this->musers->check_email_exists($email);
@@ -84,9 +84,47 @@ class Users extends CI_Controller {
         }
     }
 
+    // Check email user exists register
+    public function check_email_exists_register($email)
+    {
+        $query = $this->musers->check_email_exists($email);
+        if ($query) {
+            $this->form_validation->set_message('check_email_exists_register', 'Email has been registered!');
+            return false;
+        } else {
+            return true;
+        }
+    }
+
 	// Register
     public function register()
 	{
+        if (isset($_POST)) {
+            $this->form_validation->set_rules('name', 'Full Name', 'trim|required', array('required' => 'Enter Your Name!'));
+            $this->form_validation->set_rules('email', 'Email Address', 'trim|required|valid_email|callback_check_email_exists_register', array('required' => 'Enter Your Email!'));
+            $this->form_validation->set_rules('pass1', 'Password', 'trim|required|min_length[8]', array('required' => 'Enter Your Password!', 'min_length' => 'Password must be at least 8 characters!'));
+            $this->form_validation->set_rules('pass2', 'Confirm Password', 'trim|required|matches[pass1]', array('required' => 'Enter Your Confirm Password!', 'matches' => 'Password not match!'));
+            $this->form_validation->set_rules('category', 'Category', 'trim|required', array('required' => 'Select Category!'));
+            if ($this->form_validation->run() == FALSE) {
+                // echo validation_errors();
+            } else {
+                $data = [
+                    'name' => $this->input->post('name', true),
+                    'email' => $this->input->post('email', true),
+                    'password' => md5($this->input->post('pass', true)),
+                    'level' => $this->input->post('category')
+                ];
+                $query = $this->musers->register($data);
+                if ($query) {
+                    $this->session->set_flashdata('success', 'Account registration is successful. You can log in when your account has been verified.');
+                } else {
+                    $this->session->set_flashdata('failed', 'Account registration failed!');
+                }
+            }
+        }
+
+        $this->is_login();
+
 		$data['title'] = "Register";
 		$this->load->view('users/partials/head', $data);
 		$this->load->view('users/register');

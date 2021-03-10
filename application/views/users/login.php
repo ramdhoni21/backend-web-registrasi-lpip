@@ -14,9 +14,13 @@
                         <h4 class="text-primary">The 6rd IRECOMS 2021</h4>
                         <p>Please fill the Email address and Password</p>
                     </div>
-                    <div id="errorLogin" class="text-center text-warning">
-                            <?= $this->session->flashdata('login') ?>
-                        </div>
+                    <div class="card-header border-0 bg-white text-center pb-0 pt-4">
+                        <?php if ($this->session->flashdata('login_failed')) : ?>
+                            <div class="alert alert-warning">
+                                <?= $this->session->flashdata('login_failed') ?>
+                            </div>
+                        <?php endif; ?>
+                    </div>
                     <div class="login-form-body">
                         <div class="form-gp">
                             <label for="email">Email address</label>

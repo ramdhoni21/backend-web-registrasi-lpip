@@ -14,40 +14,52 @@
                         <h4 class="text-primary">Register</h4>
                         <p>Hello there, Register and Join with Us</p>
                     </div>
+                    <div class="card-header border-0 bg-white text-center pb-0 pt-4">
+                        <?php if ($this->session->flashdata('success')) : ?>
+                            <div class="alert alert-success">
+                                <?= $this->session->flashdata('success') ?>
+                            </div>
+                        <?php elseif ($this->session->flashdata('failed')) : ?>
+                            <div class="alert alert-danger">
+                                <?= $this->session->flashdata('failed') ?>
+                            </div>
+                        <?php endif; ?>
+                    </div>
                     <div class="login-form-body">
                         <div class="form-gp">
                             <label for="name">Full Name</label>
                             <input type="text" id="name" name="name">
                             <i class="ti-user"></i>
-                            <div class="text-danger"></div>
+                            <small id="errorName" class="text-danger"><?= form_error('name') ?></small>
                         </div>
                         <div class="form-gp">
-                            <label for="exampleInputEmail1">Email address</label>
-                            <input type="email" id="exampleInputEmail1">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email">
                             <i class="ti-email"></i>
-                            <div class="text-danger"></div>
+                            <small id="errorEmail" class="text-danger"><?= form_error('email') ?></small>
                         </div>
                         <div class="form-gp">
-                            <label for="exampleInputPassword1">Password</label>
-                            <input type="password" id="exampleInputPassword1">
+                            <label for="pass1">Password</label>
+                            <input type="password" id="pass1" name="pass1">
                             <i class="ti-lock"></i>
-                            <div class="text-danger"></div>
+                            <small id="errorPass1" class="text-danger"><?= form_error('pass1') ?></small>
                         </div>
                         <div class="form-gp">
-                            <label for="exampleInputPassword2">Confirm Password</label>
-                            <input type="password" id="exampleInputPassword2">
+                            <label for="pass2">Confirm Password</label>
+                            <input type="password" id="pass2" name="pass2">
                             <i class="ti-lock"></i>
-                            <div class="text-danger"></div>
+                            <small id="errorPass2" class="text-danger"><?= form_error('pass2') ?></small>
                         </div>
                         <div class="form-group text-center">
                             <div class="custom-control custom-radio custom-control-inline">
-                                <input checked type="radio" id="category1" name="category" class="custom-control-input">
+                                <input checked type="radio" id="category1" name="category" value="3" class="custom-control-input">
                                 <label class="custom-control-label" for="category1">Participant</label>
                             </div>
                             <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" id="category2" name="category" class="custom-control-input">
+                                <input type="radio" id="category2" name="category" value="2" class="custom-control-input">
                                 <label class="custom-control-label" for="category2">Presenter</label>
                             </div>
+                            <small id="errorCategory" class="text-danger"><?= form_error('category') ?></small>
                         </div>
                         <div class="submit-btn-area">
                             <button id="form_submit" type="submit">Register<i class="ti-arrow-right"></i></button>
