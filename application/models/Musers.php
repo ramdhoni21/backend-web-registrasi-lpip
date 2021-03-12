@@ -3,6 +3,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Musers extends CI_Model
 {
+
     // check login
     public function check_login($data)
     {

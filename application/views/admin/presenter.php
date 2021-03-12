@@ -40,26 +40,30 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>Airi Satou</td>
-                                                <td>airi@mail.com</td>
-                                                <td>05/03/2021</td>
-                                                <td><span class="badge badge-pill badge-secondary">Unvalidasi</span></td>
-                                                <td class="style: text-left">
-                                                    <a href="<?= base_url('admin/presenter/1') ?>"><i class="ti-view-list-alt mr-1"></i>View</a> |
-                                                    <a href=""><i class="ti-check-box mr-1"></i>Validasi</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Brew Amin</td>
-                                                <td>brew@mail.com</td>
-                                                <td>04/03/2021</td>
-                                                <td><span class="badge badge-pill badge-success">Validasi</span></td>
-                                                <td class="style: text-left">
-                                                    <a href="<?= base_url('admin/presenter/2') ?>"><i class="ti-view-list-alt mr-1"></i>View</a> |
-                                                    <a href=""><i class="ti-na mr-1"></i>Unvalidasi</a>
-                                                </td>
-                                            </tr>
+                                            <?php if ($data_presenter) :
+                                                foreach ($data_presenter as $data) : ?>
+                                                    <tr>
+                                                        <td><?= $data['name'] ?></td>
+                                                        <td><?= $data['email'] ?></td>
+                                                        <td><?= $data['date'] ?></td>
+                                                        <td>
+                                                            <?php if ($data['validasi'] == '0') : ?>
+                                                                <span class="badge badge-pill badge-secondary">Unvalidasi</span>
+                                                            <?php elseif ($data['validasi'] == '1') : ?>
+                                                                <span class="badge badge-pill badge-success">Validasi</span>
+                                                            <?php endif; ?>
+                                                        </td>
+                                                        <td class="style: text-left">
+                                                            <a href="<?= base_url('admin/presenter/'.$data['id']) ?>"><i class="ti-view-list-alt mr-1"></i>View</a> |
+                                                            <?php if ($data['validasi'] == '0') : ?>
+                                                                <a href="<?= base_url('admin/validasi/'.$data['id']) ?>"><i class="ti-check-box mr-1"></i>Validasi</a>
+                                                            <?php elseif ($data['validasi'] == '1') : ?>
+                                                                <a href="<?= base_url('admin/unvalidasi/'.$data['id']) ?>"><i class="ti-na mr-1"></i>Unvalidasi</a>
+                                                            <?php endif; ?>
+                                                        </td>
+                                                    </tr>
+                                            <?php endforeach;
+                                            endif; ?>
                                         </tbody>
                                     </table>
                                 </div>
