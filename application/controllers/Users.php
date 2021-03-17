@@ -111,7 +111,7 @@ class Users extends CI_Controller {
                 $data = [
                     'name' => $this->input->post('name', true),
                     'email' => $this->input->post('email', true),
-                    'password' => md5($this->input->post('pass', true)),
+                    'password' => md5($this->input->post('pass1', true)),
                     'level' => $this->input->post('category'),
                     'date' => date("Y/m/d")
                 ];

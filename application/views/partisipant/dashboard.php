@@ -23,6 +23,20 @@
             
             <div class="main-content-inner">
                 <div class="row">
+
+				<div class="col-lg-6 col-ml-12">
+                        <div class="row">
+
+							<div class="col-12 mt-5">
+                                <div class="card">
+                                    <div class="card-body">
+										
+										<h2> Hello <?=$this->session->userdata('name')?>, wellcome back.</h2>
+									</div>
+								</div>
+							</div>
+                        </div>
+                    </div>
                     
                     
 

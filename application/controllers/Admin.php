@@ -12,7 +12,25 @@ class Admin extends CI_Controller {
         $this->load->model('Madmin','madmin');
 		$this->back_url = $this->session->userdata('back_url');
         $this->last_url = $this->session->userdata('last_url');
+		$this->check_auth();
         
+    }
+
+	// Check auth
+    public function check_auth()
+    {
+		if ($this->session->userdata('is_login')) {
+			// Auth login level
+			if ($this->session->userdata('level') == '1') {       // Admin
+				return;
+			} elseif($this->session->userdata('level') == '2') {  // Presenter
+				redirect('presenter/');
+			} elseif ($this->session->userdata('level') == '3') { // Partisipant
+				redirect('partisipant/');
+			}
+		} else {
+			redirect('users/login');
+		}
     }
 
 	public function index()
