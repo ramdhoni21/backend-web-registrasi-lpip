@@ -43,6 +43,7 @@ class Partisipant extends CI_Controller {
 
     public function profil()
 	{
+		$data['data_user'] = $this->musers->get_users_by_id($this->session->userdata('id_user'));
 		$data['title'] = "Partisipant :: Profil";
 		$data['page_title'] = "Profil";
 		$this->load->view('partisipant/partials/head', $data);
