@@ -12,12 +12,8 @@
 
         <!-- main content area start -->
         <div class="main-content">
-
-            <!-- header area start -->
-            
-            <!-- header area end -->
-
-            <!-- Load view side bar -->
+		
+            <!-- Load view navbar -->
             <?php $this->load->view('admin/partials/navbar') ?>
             
             <div class="main-content-inner">
