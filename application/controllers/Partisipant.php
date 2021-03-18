@@ -43,7 +43,8 @@ class Participant extends CI_Controller {
 
     public function profil()
 	{
-		$data['title'] = "Participant :: Profil";
+		$data['data_user'] = $this->musers->get_users_by_id($this->session->userdata('id_user'));
+		$data['title'] = "Partisipant :: Profil";
 		$data['page_title'] = "Profil";
 		$this->load->view('Participant/partials/head', $data);
 		$this->load->view('Participant/profil');
