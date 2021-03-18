@@ -24,8 +24,8 @@ class Presenter extends CI_Controller {
 				redirect('Admin/');
 			} elseif($this->session->userdata('level') == '2') {  // Presenter
 				return;
-			} elseif ($this->session->userdata('level') == '3') { // Partisipant
-				redirect('partisipant/');
+			} elseif ($this->session->userdata('level') == '3') { // participant
+				redirect('participant/');
 			}
 		} else {
 			redirect('users/login');

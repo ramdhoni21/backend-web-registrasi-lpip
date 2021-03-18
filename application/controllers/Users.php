@@ -27,8 +27,8 @@ class Users extends CI_Controller {
             redirect('Admin/');
         } elseif($this->session->userdata('level') == '2') {  // Presenter
             redirect('presenter/');
-        } elseif ($this->session->userdata('level') == '3') { // Partisipant
-            redirect('partisipant/');
+        } elseif ($this->session->userdata('level') == '3') { // participant
+            redirect('participant/');
         }
     }
 

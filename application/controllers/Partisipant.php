@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Partisipant extends CI_Controller {
+class Participant extends CI_Controller {
 
 	public function __construct()
     {
@@ -24,7 +24,7 @@ class Partisipant extends CI_Controller {
 				redirect('Admin/');
 			} elseif($this->session->userdata('level') == '2') {  // Presenter
 				redirect('presenter/');
-			} elseif ($this->session->userdata('level') == '3') { // Partisipant
+			} elseif ($this->session->userdata('level') == '3') { // Participant
 				return;
 			}
 		} else {
@@ -34,20 +34,20 @@ class Partisipant extends CI_Controller {
 
 	public function index()
 	{
-		$data['title'] = "Partisipant :: Dashboard";
-		$data['page_title'] = "Dashboard Partisipant";
-		$this->load->view('partisipant/partials/head', $data);
-		$this->load->view('partisipant/dashboard');
-		$this->load->view('partisipant/partials/footer');
+		$data['title'] = "Participant :: Dashboard";
+		$data['page_title'] = "Dashboard Participant";
+		$this->load->view('Participant/partials/head', $data);
+		$this->load->view('Participant/dashboard');
+		$this->load->view('Participant/partials/footer');
 	}
 
     public function profil()
 	{
-		$data['title'] = "Partisipant :: Profil";
+		$data['title'] = "Participant :: Profil";
 		$data['page_title'] = "Profil";
-		$this->load->view('partisipant/partials/head', $data);
-		$this->load->view('partisipant/profil');
-		$this->load->view('partisipant/partials/footer');
+		$this->load->view('Participant/partials/head', $data);
+		$this->load->view('Participant/profil');
+		$this->load->view('Participant/partials/footer');
 	}
 
 }

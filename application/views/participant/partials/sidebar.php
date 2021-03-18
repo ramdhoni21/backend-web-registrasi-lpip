@@ -9,8 +9,8 @@
                 <div class="menu-inner">
                     <nav>
                         <ul class="metismenu" id="menu">
-                            <li class="<?php if ($this->uri->segment(2) == 'dashboard' || $this->uri->segment(2) == '') echo 'active'; ?>"><a href="<?= base_url('Partisipant') ?>"><i class="ti-dashboard"></i> <span>dashboard</span></a></li>
-                            <li class="<?php if ($this->uri->segment(2) == 'profil') echo 'active'; ?>"><a href="<?= base_url('Partisipant/profil') ?>"><i class="ti-user"></i> <span>profil</span></a></li>
+                            <li class="<?php if ($this->uri->segment(2) == 'dashboard' || $this->uri->segment(2) == '') echo 'active'; ?>"><a href="<?= base_url('participant') ?>"><i class="ti-dashboard"></i> <span>dashboard</span></a></li>
+                            <li class="<?php if ($this->uri->segment(2) == 'profil') echo 'active'; ?>"><a href="<?= base_url('participant/profil') ?>"><i class="ti-user"></i> <span>profil</span></a></li>
                         </ul>
                     </nav>
                 </div>

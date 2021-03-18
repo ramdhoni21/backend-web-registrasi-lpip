@@ -27,7 +27,7 @@
                     <div class="col-12 mt-5">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="header-title">All Partisipant</h4>
+                                <h4 class="header-title">All Participant</h4>
                                 <div class="data-tables datatable-dark">
                                     <table id="dataTable3" class="text-center">
                                         <thead class="text-capitalize">
@@ -40,8 +40,8 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php if ($data_partisipant) :
-                                                foreach ($data_partisipant as $data) : ?>
+                                            <?php if ($data_participant) :
+                                                foreach ($data_participant as $data) : ?>
                                                     <tr>
                                                         <td><?= $data['name'] ?></td>
                                                         <td><?= $data['email'] ?></td>
@@ -54,7 +54,7 @@
                                                             <?php endif; ?>
                                                         </td>
                                                         <td class="style: text-left">
-                                                            <a href="<?= base_url('admin/partisipant/'.$data['id']) ?>"><i class="ti-view-list-alt mr-1"></i>View</a> |
+                                                            <a href="<?= base_url('admin/participant/'.$data['id']) ?>"><i class="ti-view-list-alt mr-1"></i>View</a> |
                                                             <?php if ($data['validasi'] == '0') : ?>
                                                                 <a href="<?= base_url('admin/validasi/'.$data['id']) ?>"><i class="ti-check-box mr-1"></i>Validasi</a>
                                                             <?php elseif ($data['validasi'] == '1') : ?>

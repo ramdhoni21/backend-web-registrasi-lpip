@@ -9,7 +9,7 @@
     <div class="page-container">
 
     <!-- Load view side bar -->
-    <?php $this->load->view('partisipant/partials/sidebar') ?>
+    <?php $this->load->view('participant/partials/sidebar') ?>
 
         <!-- main content area start -->
         <div class="main-content">
@@ -19,7 +19,7 @@
             <!-- header area end -->
 
             <!-- Load view side bar -->
-            <?php $this->load->view('partisipant/partials/navbar') ?>
+            <?php $this->load->view('participant/partials/navbar') ?>
             
             <div class="main-content-inner">
                 <div class="row">
@@ -72,6 +72,6 @@
     <!-- page container area end -->
 
     <!-- Load view script -->
-    <?php $this->load->view('partisipant/partials/script') ?>
+    <?php $this->load->view('participant/partials/script') ?>
     
 

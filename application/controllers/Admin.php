@@ -25,8 +25,8 @@ class Admin extends CI_Controller {
 				return;
 			} elseif($this->session->userdata('level') == '2') {  // Presenter
 				redirect('presenter/');
-			} elseif ($this->session->userdata('level') == '3') { // Partisipant
-				redirect('partisipant/');
+			} elseif ($this->session->userdata('level') == '3') { // participant
+				redirect('participant/');
 			}
 		} else {
 			redirect('users/login');
@@ -38,7 +38,7 @@ class Admin extends CI_Controller {
 		$data['title'] = "Admin :: Dashboard";
 		$data['page_title'] = "Dashboard Admin";
         $data['presenter'] = $this->madmin->get_users_by_level_count('2');
-        $data['partisipant'] = $this->madmin->get_users_by_level_count('3');
+        $data['participant'] = $this->madmin->get_users_by_level_count('3');
 		$this->load->view('admin/partials/head', $data);
 		$this->load->view('admin/dashboard');
 		$this->load->view('admin/partials/footer');
@@ -68,26 +68,26 @@ class Admin extends CI_Controller {
 		}
 	}
 
-	public function partisipant($id = null)
+	public function participant($id = null)
 	{
 		
 		if ($id == null) {
 
             $this->session->set_userdata('last_url', current_url());
-			$data['title'] = "Admin :: Partisipant";
-			$data['page_title'] = "Partisipant";
-            $data['data_partisipant'] = $this->madmin->get_users_by_category('3');
+			$data['title'] = "Admin :: participant";
+			$data['page_title'] = "participant";
+            $data['data_participant'] = $this->madmin->get_users_by_category('3');
 			$this->load->view('admin/partials/head', $data);
-			$this->load->view('admin/partisipant');
+			$this->load->view('admin/participant');
 			$this->load->view('admin/partials/footer');
 
-		// partisipant detail
+		// participant detail
 		} else {
 
-			$data['title'] = "Admin :: Partisipant Detail";
-			$data['page_title'] = "Partisipant Detail";
+			$data['title'] = "Admin :: participant Detail";
+			$data['page_title'] = "participant Detail";
 			$this->load->view('admin/partials/head', $data);
-			$this->load->view('admin/partisipant_detail');
+			$this->load->view('admin/participant_detail');
 			$this->load->view('admin/partials/footer');
 
 		}
