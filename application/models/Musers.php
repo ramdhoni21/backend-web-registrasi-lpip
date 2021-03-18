@@ -51,8 +51,10 @@ class Musers extends CI_Model
     public function get_users_by_id($id)
     {
         $this->db->select('*');
-        $this->db->where('id', $id);
-        $query = $this->db->get('tb_users');
+        $this->db->from('tb_users');
+        $this->db->join('tb_users_detail', 'tb_users.id = tb_users_detail.id_users');
+        $this->db->where('tb_users.id', $id);
+        $query = $this->db->get();
         if ($query->num_rows() > 0) {
             return $query->result_array();
         } else {

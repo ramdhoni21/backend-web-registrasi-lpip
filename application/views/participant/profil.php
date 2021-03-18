@@ -26,32 +26,43 @@
                             <div class="col-12 mt-5">
                                 <div class="card">
                                     <div class="card-body">
-                                        <form>
-                                        <?php foreach($data_user as $data) : ?>
+									<?= form_open('partisipant/update_profil') ?>
+									<?php if ($data_user) :
+                                              foreach ($data_user as $data) : ?>
                                             <div class="form-group">
                                                 <label for="name" class="col-form-label">Name</label>
-                                                <input class="form-control" type="text" value="<?= $data['name']?>" id="name" disabled>
+                                                <input class="form-control" type="text" value="<?= $data['name']?>" id="name" name="name" disabled>
                                                 <small id="errorName" class="text-danger"><?= form_error('name') ?></small>
                                             </div>
                                             <div class="form-group">
                                                 <label for="email" class="col-form-label">Email</label>
-                                                <input class="form-control" type="email" value="<?= $data['email']?>" id="email" disabled>
+                                                <input class="form-control" type="email" value="<?= $data['email']?>" id="email" name="email" disabled>
                                                 <small id="errorEmail" class="text-danger"><?= form_error('email') ?></small>
                                             </div>
+											<div class="form-group">
+												<label class="col-form-label">Participant Category</label>
+												<select class="custom-select" name="category" id="category">
+													<option <?php if ($data['category'] == '0') {echo "selected";} ?> value="0"></option>
+													<option <?php if ($data['category'] == '1') {echo "selected";} ?> value="1">Domestic</option>
+													<option <?php if ($data['category'] == '2') {echo "selected";} ?> value="2">International</option>
+												</select>
+                                                <small id="errorCategory" class="text-danger"><?= form_error('category') ?></small>
+											</div>
                                             <div class="form-group">
                                                 <label for="affiliation" class="col-form-label">Affiliation</label>
-                                                <input class="form-control" type="text" value="-" id="affiliation">
+                                                <input class="form-control" type="text" value="<?= $data['affiliation']?>" id="affiliation" name="affiliation">
                                                 <small id="errorAffiliation" class="text-danger"><?= form_error('affiliation') ?></small>
                                             </div>
                                             <div class="form-group">
                                                 <label for="telp" class="col-form-label">Phone</label>
-                                                <input class="form-control" type="tel" value="-" id="telp">
+                                                <input class="form-control" type="tel" value="<?= $data['telp']?>" id="telp" name="telp">
                                                 <small id="errorTelp" class="text-danger"><?= form_error('telp') ?></small>
                                             </div>
                                             <button type="submit" class="btn btn-primary mt-4">Save</button>
                                             <a href="" class="btn btn-secondary mt-4 ml-1">Cancel</a>
-                                        <?php endforeach; ?>
-                                        </form>
+										<?php endforeach;
+                                            endif; ?>
+                                        <?= form_close() ?>
                                     </div>
                                 </div>
                             </div>
