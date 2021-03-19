@@ -25,26 +25,54 @@
                             <div class="col-12 mt-5">
                                 <div class="card">
                                     <div class="card-body">
-                                        <div class="form-group">
-                                            <label for="name" class="col-form-label">Name</label>
-                                            <input class="form-control" type="text" value="Airi Satou" id="name">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="email" class="col-form-label">Email</label>
-                                            <input class="form-control" type="email" value="airi@mail.come" id="email">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="afiliasi" class="col-form-label">Afiliasi</label>
-                                            <input class="form-control" type="text" value="Universitas 1 Januari" id="afiliasi">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="telp" class="col-form-label">Telephone</label>
-                                            <input class="form-control" type="tel" value="+6212345678567" id="telp">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="password" class="">Password</label>
-                                            <input type="password" class="form-control" id="password" value="inputPassword" placeholder="Password">
-                                        </div>
+										<div class="card-header border-0 bg-white text-center pb-0 pt-4">
+											<?php if ($this->session->flashdata('success')) : ?>
+												<div class="alert alert-success">
+													<?= $this->session->flashdata('success') ?>
+												</div>
+											<?php elseif ($this->session->flashdata('failed')) : ?>
+												<div class="alert alert-danger">
+													<?= $this->session->flashdata('failed') ?>
+												</div>
+											<?php endif; ?>
+										</div>
+                                        <?php if ($data_user) :
+                                              foreach ($data_user as $data) : ?>
+										<?= form_open('Admin/participant/'.$data['id_users']) ?>
+                                            <div class="form-group">
+                                                <label for="name" class="col-form-label">Name</label>
+                                                <input class="form-control" type="text" value="<?= $data['name']?>" id="name" name="name" disabled>
+                                                <small id="errorName" class="text-danger"><?= form_error('name') ?></small>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="email" class="col-form-label">Email</label>
+                                                <input class="form-control" type="email" value="<?= $data['email']?>" id="email" name="email" disabled>
+                                                <small id="errorEmail" class="text-danger"><?= form_error('email') ?></small>
+                                            </div>
+											<div class="form-group">
+												<label class="col-form-label">Participant Category</label>
+												<select class="custom-select" name="category" id="category">
+													<option <?php if ($data['category'] == '0') {echo "selected";} ?> ></option>
+													<option <?php if ($data['category'] == '1') {echo "selected";} ?> value="1">Domestic</option>
+													<option <?php if ($data['category'] == '2') {echo "selected";} ?> value="2">International</option>
+												</select>
+                                                <small id="errorCategory" class="text-danger"><?= form_error('category') ?></small>
+											</div>
+                                            <div class="form-group">
+                                                <label for="affiliation" class="col-form-label">Affiliation</label>
+                                                <input class="form-control" type="text" value="<?= $data['affiliation']?>" id="affiliation" name="affiliation">
+                                                <small id="errorAffiliation" class="text-danger"><?= form_error('affiliation') ?></small>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="telp" class="col-form-label">Phone</label>
+                                                <input class="form-control" type="tel" value="<?= $data['telp']?>" id="telp" name="telp">
+                                                <small id="errorTelp" class="text-danger"><?= form_error('telp') ?></small>
+                                            </div>
+											<button type="submit" class="btn btn-primary mt-4">Save</button>
+                                            <a href="<?= $this->session->userdata('back_url') ?>" class="btn btn-secondary mt-4 ml-1">Cancel</a>
+										<?php endforeach;
+                                            endif; ?>
+                                        <?= form_close() ?>
                                     </div>
                                 </div>
                             </div>

@@ -61,4 +61,19 @@ class Musers extends CI_Model
             return 0;
         }
     }
+
+	// update profil users
+    public function update_profil($data)
+    {
+        $this->db->Where('id_users', $this->session->userdata('id_user'));
+        $this->db->update('tb_users_detail', $data);
+        if ($this->db->affected_rows() > 0) {
+            // update profil success
+            return true;
+        } else {
+            // update profil failed
+            return false;
+        }
+        
+    }
 }

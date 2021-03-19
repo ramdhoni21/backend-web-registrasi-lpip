@@ -45,4 +45,19 @@ class Madmin extends CI_Model
         } 
     }
 
+	// update profil users
+    public function update_profil($data, $id)
+    {
+        $this->db->Where('id_users', $id);
+        $this->db->update('tb_users_detail', $data);
+        if ($this->db->affected_rows() > 0) {
+            // update profil success
+            return true;
+        } else {
+            // update profil failed
+            return false;
+        }
+        
+    }
+
 }

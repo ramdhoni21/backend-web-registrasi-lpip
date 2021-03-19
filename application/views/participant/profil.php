@@ -26,9 +26,20 @@
                             <div class="col-12 mt-5">
                                 <div class="card">
                                     <div class="card-body">
-									<?= form_open('partisipant/update_profil') ?>
+									<div class="card-header border-0 bg-white text-center pb-0 pt-4">
+										<?php if ($this->session->flashdata('success')) : ?>
+											<div class="alert alert-success">
+												<?= $this->session->flashdata('success') ?>
+											</div>
+										<?php elseif ($this->session->flashdata('failed')) : ?>
+											<div class="alert alert-danger">
+												<?= $this->session->flashdata('failed') ?>
+											</div>
+										<?php endif; ?>
+									</div>
 									<?php if ($data_user) :
                                               foreach ($data_user as $data) : ?>
+									<?= form_open('participant/profil') ?>
                                             <div class="form-group">
                                                 <label for="name" class="col-form-label">Name</label>
                                                 <input class="form-control" type="text" value="<?= $data['name']?>" id="name" name="name" disabled>
@@ -42,7 +53,7 @@
 											<div class="form-group">
 												<label class="col-form-label">Participant Category</label>
 												<select class="custom-select" name="category" id="category">
-													<option <?php if ($data['category'] == '0') {echo "selected";} ?> value="0"></option>
+													<option <?php if ($data['category'] == '0') {echo "selected";} ?> ></option>
 													<option <?php if ($data['category'] == '1') {echo "selected";} ?> value="1">Domestic</option>
 													<option <?php if ($data['category'] == '2') {echo "selected";} ?> value="2">International</option>
 												</select>
@@ -59,7 +70,7 @@
                                                 <small id="errorTelp" class="text-danger"><?= form_error('telp') ?></small>
                                             </div>
                                             <button type="submit" class="btn btn-primary mt-4">Save</button>
-                                            <a href="" class="btn btn-secondary mt-4 ml-1">Cancel</a>
+                                            <a href="<?= $this->session->userdata('back_url') ?>" class="btn btn-secondary mt-4 ml-1">Cancel</a>
 										<?php endforeach;
                                             endif; ?>
                                         <?= form_close() ?>

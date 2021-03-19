@@ -43,6 +43,29 @@ class Presenter extends CI_Controller {
 
     public function profil()
 	{
+		if (isset($_POST)) {
+            $this->form_validation->set_rules('category', 'Category', 'trim|required', array('required' => 'Select presenter category!'));
+            $this->form_validation->set_rules('affiliation', 'Affiliation', 'trim|required', array('required' => 'Enter your affiliation!'));
+            $this->form_validation->set_rules('telp', 'Phone', 'trim|required', array('required' => 'Enter your number phone!'));
+            if ($this->form_validation->run() == FALSE) {
+                // echo validation_errors();
+            } else {
+                $data = [
+                    'category' => $this->input->post('category', true),
+                    'affiliation' => $this->input->post('affiliation', true),
+                    'telp' => $this->input->post('telp', true),
+                ];
+                $query = $this->musers->update_profil($data);
+                if ($query) {
+                    $this->session->set_flashdata('success', 'Update profil is successful.');
+                } else {
+                    $this->session->set_flashdata('failed', 'Update profil failed!');
+                }
+            }
+        }
+
+		$this->session->set_userdata('back_url', current_url());
+		$data['data_user'] = $this->musers->get_users_by_id($this->session->userdata('id_user'));
 		$data['title'] = "Presenter :: Profil";
 		$data['page_title'] = "Profil";
 		$this->load->view('presenter/partials/head', $data);
@@ -58,7 +81,6 @@ class Presenter extends CI_Controller {
 		$this->load->view('presenter/jurnal');
 		$this->load->view('presenter/partials/footer');
 	}
-
 
 
 }

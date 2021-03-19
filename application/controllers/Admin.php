@@ -59,6 +59,29 @@ class Admin extends CI_Controller {
 		// presenter detail
 		} else {
 
+			if (isset($_POST)) {
+				$this->form_validation->set_rules('category', 'Category', 'trim|required', array('required' => 'Select presenter category!'));
+				$this->form_validation->set_rules('affiliation', 'Affiliation', 'trim|required', array('required' => 'Enter affiliation!'));
+				$this->form_validation->set_rules('telp', 'Phone', 'trim|required', array('required' => 'Enter number phone!'));
+				if ($this->form_validation->run() == FALSE) {
+					// echo validation_errors();
+				} else {
+					$data = [
+						'category' => $this->input->post('category', true),
+						'affiliation' => $this->input->post('affiliation', true),
+						'telp' => $this->input->post('telp', true),
+					];
+					$query = $this->madmin->update_profil($data, $id);
+					if ($query) {
+						$this->session->set_flashdata('success', 'Update profil is successful.');
+					} else {
+						$this->session->set_flashdata('failed', 'Update profil failed!');
+					}
+				}
+			}
+
+			$this->session->set_userdata('back_url', current_url());
+			$data['data_user'] = $this->musers->get_users_by_id($id);
 			$data['title'] = "Admin :: Presenter Detail";
 			$data['page_title'] = "Presenter Detail";
 			$this->load->view('admin/partials/head', $data);
@@ -84,6 +107,29 @@ class Admin extends CI_Controller {
 		// participant detail
 		} else {
 
+			if (isset($_POST)) {
+				$this->form_validation->set_rules('category', 'Category', 'trim|required', array('required' => 'Select participant category!'));
+				$this->form_validation->set_rules('affiliation', 'Affiliation', 'trim|required', array('required' => 'Enter affiliation!'));
+				$this->form_validation->set_rules('telp', 'Phone', 'trim|required', array('required' => 'Enter number phone!'));
+				if ($this->form_validation->run() == FALSE) {
+					// echo validation_errors();
+				} else {
+					$data = [
+						'category' => $this->input->post('category', true),
+						'affiliation' => $this->input->post('affiliation', true),
+						'telp' => $this->input->post('telp', true),
+					];
+					$query = $this->madmin->update_profil($data, $id);
+					if ($query) {
+						$this->session->set_flashdata('success', 'Update profil is successful.');
+					} else {
+						$this->session->set_flashdata('failed', 'Update profil failed!');
+					}
+				}
+			}
+
+			$this->session->set_userdata('back_url', current_url());
+			$data['data_user'] = $this->musers->get_users_by_id($id);
 			$data['title'] = "Admin :: participant Detail";
 			$data['page_title'] = "participant Detail";
 			$this->load->view('admin/partials/head', $data);
